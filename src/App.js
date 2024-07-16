@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import Random from './components/Random';
+import Recipe from './components/Recipe';
+import Main from './components/Main'
+import { useState } from 'react';
 
 function App() {
+  const [item , setItem] = useState(null);
+
+  const handleSetItem = (data) => {
+    setItem(data);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav id="navBar">
+        <Recipe onSetItem={handleSetItem} />
+        <Random onSetItem={handleSetItem}/>
+      </nav>
+      {item && <Main item={item} />}
     </div>
   );
 }
